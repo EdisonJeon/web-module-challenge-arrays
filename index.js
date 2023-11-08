@@ -46,10 +46,9 @@ Use the copy function below to do the following:
 */
 
 
-function copy(/*your code here*/){
-  /*your code here*/
+function copy(arr){
+  return [...arr]
 }
-
 
 
 /*🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 2: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
@@ -63,8 +62,12 @@ For Example: is31Flavors(originalFlavors) will return true if your code is worki
 */
 
 
-function is31Flavors(/*your code here*/){
-  /*your code here*/
+function is31Flavors(arr){
+  if (arr.length === 31) {
+    return true;
+  } else {
+    return false;
+  }
  }
 
 
@@ -82,10 +85,12 @@ Use the addFlavor function below to do the following:
 */
 
 
-function addFlavor(/*your code here*/){
-  /*your code here*/
+function addFlavor(arr, str){
+  arr.unshift(str)
+  return arr;
  }
 
+ addFlavor(originalFlavors, "Rainbow Sherbert")
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 4: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
@@ -100,10 +105,11 @@ Use the removeLastFlavor function below to do the following:
 */
 
 
-function removeLastFlavor(/*your code here*/){
- /*your code here*/
+function removeLastFlavor(arr){
+ arr.pop()
+ return arr;
 }
-
+removeLastFlavor(originalFlavors)
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 5: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
@@ -117,12 +123,16 @@ Use the getFlavorByIndex function below to do the following:
   For example: running getFlavorByIndex(originalFlavors, 2) would return "Black Walnut", assuming Rainbow Sherbert has been added successfully
 */
 
+console.log(originalFlavors);
 
-function getFlavorByIndex(/*your code here*/){
-  /*your code here*/
+function getFlavorByIndex(arr, idx){
+  return arr[idx]
 }
 
+console.log(getFlavorByIndex(originalFlavors, 2));
 
+console.log("Prior to task 6: ", originalFlavors.length);
+console.log(originalFlavors);
 
 /*🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 6: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 As corporate wants to add more and more flavors to their lineup, they've realized that they need to remove flavors based on flavor name, as opposed to just arbitrarily removing the first or last flavor. Your task is to get an index by flavor name, and remove that single flavor from the array.  
@@ -138,10 +148,17 @@ Use the removeFlavorByName function below to do the following:
   HINT: You can use .splice() for this
 */
 
-function removeFlavorByName(/*your code here*/){
-  /*your code here*/
+function removeFlavorByName(arr, str){
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === str) {
+      arr.splice(i, 1);
+      console.log(i);
+    }
+  }
+  return arr;
 }
 
+console.log(removeFlavorByName(originalFlavors, "Rocky Road"));
 
 
 /*🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 7: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
@@ -163,10 +180,17 @@ Use the filterByWord function below to do the following:
 */
 
 
-function filterByWord(/*your code here*/){
-  /*your code here*/
+function filterByWord(arr, str){
+  const newArr = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].includes(str)) {
+      newArr.push(arr[i])
+    }
+  }
+  return newArr;
 }
 
+console.log(filterByWord(originalFlavors, "Chocolate"));
 
 
 /* 💪💪💪💪💪🧁🍦🍨 STRETCH 🍨🍦🍫💪💪💪💪💪*/ 
@@ -181,9 +205,18 @@ Use the getAverageWordLength function below to do the following:
   For example: getAverageWordLength(originalFlavors) should return a number between 0 and 3.     
 */
 
-function getAverageWordLength(/*code here*/){
-  /*code here*/
+
+function getAverageWordLength(arr){
+  let count = 0;
+  for (let i = 0; i < arr.length; i++) {
+    count += (arr[i].split(" ").length - 1);
+  }
+  return count / arr.length
 }
+
+console.log("for stretch 1: ", originalFlavors);
+console.log("stretch 1 testing: ",getAverageWordLength(originalFlavors));
+
 
 
 /* 💪💪💪💪💪💪💪💪💪💪 STRETCH 2: 💪💪💪💪💪💪💪💪💪
@@ -199,91 +232,109 @@ Use the getRandomFlavors function and new arrays below to do the following:
 */
 
 
-function getRandomFlavors(/*code here*/){
-  /*code here*/
+function getRandomFlavors(arr1, arr2, arr3, arr4){
+  const finalFlavors = [];
+  const combinedArr = [arr1, arr2, arr3, arr4];
+  while (finalFlavors.length < 31) {
+    let randomNumber1 = Math.floor(Math.random() * combinedArr.length)
+    let newRanArr = combinedArr[randomNumber1]
+    let randomNumber2 = Math.floor(Math.random() * newRanArr.length);
+    finalFlavors.push(combinedArr[randomNumber1][randomNumber2])
+  }
+  return finalFlavors
 }
 
+
+
+
+// console.log("Stretch 2: ", getRandomFlavors(originalFlavors, newFlavors, seasonalFlavors, regionalFlavors));
+
 // NEW DATA ARRAYS FOR STRETCH 2 ⬇️
-// const newFlavors = [
-//   "Date night",
-//   "U.S.S Butterscotch (Stranger Things special)",
-//   "Honey Almond",
-//   "Mint Chocolate Chip",
-//   "Chocolate",
-//   "Oreo® Cookies'n Cream",
-//   "Chocolate Chip",
-//   "Pralines 'n Cream",
-//   "Very Berry Strawberry",
-//   "Chocolate Chip Cookie Dough",
-//   "Old Fashioned Butter Pecan",
-//   "Jamoca®",
-//   "Jamoca® Almond Fudge",
-//   "Reese's® Peanut Butter Cup",
-//   "Rocky Road",
-//   "Peanut Butter ’n Chocolate",
-//   "Gold Medal Ribbon®",
-//   "World Class® Chocolate",
-//   "Cherries Jubilee",
-//   "Chocolate Fudge",
-//   "Daiquiri Ice",
-//   "Rainbow Sherbet",
-//   "Rainbow Swirl"
-// ] 
+const newFlavors = [
+  "Date night",
+  "U.S.S Butterscotch (Stranger Things special)",
+  "Honey Almond",
+  "Mint Chocolate Chip",
+  "Chocolate",
+  "Oreo® Cookies'n Cream",
+  "Chocolate Chip",
+  "Pralines 'n Cream",
+  "Very Berry Strawberry",
+  "Chocolate Chip Cookie Dough",
+  "Old Fashioned Butter Pecan",
+  "Jamoca®",
+  "Jamoca® Almond Fudge",
+  "Reese's® Peanut Butter Cup",
+  "Rocky Road",
+  "Peanut Butter ’n Chocolate",
+  "Gold Medal Ribbon®",
+  "World Class® Chocolate",
+  "Cherries Jubilee",
+  "Chocolate Fudge",
+  "Daiquiri Ice",
+  "Rainbow Sherbet",
+  "Rainbow Swirl"
+] 
 
-// const seasonalFlavors = [
-//   "America's Birthday Cake",
-//   "Baseball Nut®",
-//   "Blueberry Cheesecake",
-//   "Bourbon Street Pecan Pie",
-//   "Brownie Bar Mashup",
-//   "Cherry Cordial with Kisses",
-//   "Chocolate Mousse Royale",
-//   "French Vanilla",
-//   "Eggnog",
-//   "German Chocolate Cake",
-//   "Icing on the Cake",
-//   "Love Potion #31",
-//   "New York Cheesecake",
-//   "Nutty Coconut",
-//   "Peppermint",
-//   "Strawberry Cheesecake",
-//   "Rock ’n Pop Swirl",
-//   "Reese’s Peanut Butter Cup",
-//   "Trick Oreo Treat",
-//   "Winter White Chocolate",
-//   "made with Snickers®",
-//   "made with M&M's®",
-//   "Heath®",
-//   "Mango Tango"
-// ]
+const seasonalFlavors = [
+  "America's Birthday Cake",
+  "Baseball Nut®",
+  "Blueberry Cheesecake",
+  "Bourbon Street Pecan Pie",
+  "Brownie Bar Mashup",
+  "Cherry Cordial with Kisses",
+  "Chocolate Mousse Royale",
+  "French Vanilla",
+  "Eggnog",
+  "German Chocolate Cake",
+  "Icing on the Cake",
+  "Love Potion #31",
+  "New York Cheesecake",
+  "Nutty Coconut",
+  "Peppermint",
+  "Strawberry Cheesecake",
+  "Rock ’n Pop Swirl",
+  "Reese’s Peanut Butter Cup",
+  "Trick Oreo Treat",
+  "Winter White Chocolate",
+  "made with Snickers®",
+  "made with M&M's®",
+  "Heath®",
+  "Mango Tango"
+]
 
-// const regionalFlavors = [
-//   "Pink Bubblegum",
-//   "Caramel Macchiato",
-//   "York Peppermint Pattie",
-//   "Cotton Candy",
-//   "Orange Sherbet",
-//   "Grape Ice",
-//   "Watermelon Ice",
-//   "Miami Vice Sorbet",
-//   "Splish Splash®",
-//   "Wild 'n Reckless Sherbet",
-//   "Lemon Custard",
-//   "Oregon Blackberry",
-//   "Bananas ‘n Strawberries",
-//   "Mississippi Mud",
-//   "Rum Raisin",
-//   "Creole Cream Cheese",
-//   "Chocolate Almond",
-//   "Fudge Brownie",
-//   "Banana Nut",
-//   "Black Walnut",
-//   "Cotton Candy Crackle",
-//   "Quarterback Crunch",
-//   "Chocolate Chocolate Chip Cheesecake",
-//   "Caramel 'n' Cookies"
-// ]
+const regionalFlavors = [
+  "Pink Bubblegum",
+  "Caramel Macchiato",
+  "York Peppermint Pattie",
+  "Cotton Candy",
+  "Orange Sherbet",
+  "Grape Ice",
+  "Watermelon Ice",
+  "Miami Vice Sorbet",
+  "Splish Splash®",
+  "Wild 'n Reckless Sherbet",
+  "Lemon Custard",
+  "Oregon Blackberry",
+  "Bananas ‘n Strawberries",
+  "Mississippi Mud",
+  "Rum Raisin",
+  "Creole Cream Cheese",
+  "Chocolate Almond",
+  "Fudge Brownie",
+  "Banana Nut",
+  "Black Walnut",
+  "Cotton Candy Crackle",
+  "Quarterback Crunch",
+  "Chocolate Chocolate Chip Cheesecake",
+  "Caramel 'n' Cookies"
+]
 
+console.log(originalFlavors.length);
+console.log(newFlavors.length);
+console.log(seasonalFlavors.length);
+console.log(regionalFlavors.length);
+console.log(getRandomFlavors(originalFlavors, newFlavors, seasonalFlavors, regionalFlavors))
 
 
 /* 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 */
