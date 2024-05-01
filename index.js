@@ -47,8 +47,12 @@ Use the copy function below to do the following:
 
 
 function copy(arr){
-  return [...arr]
+  let newArr = [...arr];
+  return newArr;
 }
+
+// console.log("task 1:", copy(originalFlavors));
+
 
 
 /*🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 2: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
@@ -216,6 +220,10 @@ function getAverageWordLength(arr){
 
 console.log("for stretch 1: ", originalFlavors);
 console.log("stretch 1 testing: ",getAverageWordLength(originalFlavors));
+const str = "Hello World"
+const word = str.split(" ");
+console.log("testing split:", word)
+console.log("testing split length:", word.length);
 
 
 
@@ -335,6 +343,7 @@ console.log(newFlavors.length);
 console.log(seasonalFlavors.length);
 console.log(regionalFlavors.length);
 console.log(getRandomFlavors(originalFlavors, newFlavors, seasonalFlavors, regionalFlavors))
+console.log(getRandomFlavors(originalFlavors, newFlavors, seasonalFlavors, regionalFlavors).length)
 
 
 /* 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 */
